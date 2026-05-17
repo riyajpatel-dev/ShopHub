@@ -117,7 +117,7 @@ export default function ProductListing() {
               data-bs-toggle="offcanvas"
               data-bs-target="#filterSidebar"
             >
-              <i class="fa fa-filter"></i> Filter Products
+              <i class="fa fa-filter">Filter Products</i>
             </button>
           </div>
 
@@ -242,7 +242,7 @@ export default function ProductListing() {
           {/* <!-- Main Content (Products + Sort Dropdown) --> */}
           <div class="col-lg-9">
             {/* <!-- Top bar: Products Count and Sort --> */}
-            <div class="card shadow-sm mb-4">
+            <div class="card shadow-sm mb-4 d-flex">
               <div class="card-body">
                 <div class="row align-items-center">
                   <div class="col-md-6 mb-2 mb-md-0">

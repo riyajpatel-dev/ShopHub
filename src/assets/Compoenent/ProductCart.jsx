@@ -55,7 +55,7 @@ export default function ProductCart({ product }) {
         to={`${"/product/product-details/" + product.id}`}
       >
         <div class="col h-10">
-          <div class="card  bg-dark">
+          <div class="card  bg-dark d-flex">
             <div class="position-relative" style={{ height: "380px" }}>
               <img
                 src={product.image}
@@ -67,15 +67,8 @@ export default function ProductCart({ product }) {
                 Sale
               </span>
             </div>
-            {/* <Link
-              className="text-decoration-none text-black"
-              to={`${"/product/product-details/" + product.id}`}
-            > */}
+
             <div class="card-body">
-              {/* <Link
-              className="text-decoration-none text-black"
-              to={`${"/product/product-details/" + product.id}`}
-            > */}
               <h6 class="card-title custom-text text-light fst-italic">
                 {product.name}
               </h6>

@@ -15,6 +15,7 @@ import ProductDetail from "./assets/Compoenent/ProductDetail";
 import Context from "./assets/Compoenent/Context/Context";
 
 import ViewCart from "./assets/Compoenent/ViewCart";
+import ProductDetails2 from "./assets/Compoenent/ProductDetails2";
 
 // const router = createBrowserRouter([
 //   {
@@ -38,6 +39,7 @@ createRoot(document.getElementById("root")).render(
             path="product/product-details/:id"
             element={<ProductDetail />}
           />
+          {/* <Route path="/product/productDetail" element={<ProductDetails2 />} /> */}
           <Route path="/viewcart" element={<ViewCart />} />
         </Route>
       </Routes>
