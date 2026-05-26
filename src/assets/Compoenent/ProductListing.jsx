@@ -290,13 +290,7 @@ export default function ProductListing() {
                     );
                   })
                 : ""}
-              {
-                // product.map((v, i) => {
-                //   return (
-                //     <ProductCart key={i} product={v} />
-                //   )
-                // })
-              }
+
               {/* <!-- Product 1 --> */}
 
               {/* <!-- Product 2 --> */}

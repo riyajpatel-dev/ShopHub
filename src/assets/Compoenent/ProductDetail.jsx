@@ -52,16 +52,6 @@ export default function ProductDetail() {
                       </div>
                     );
                   })}
-
-                  {/* <div class="col-md-3">
-                            <img class="w-100" src="https://cdn.pixabay.com/photo/2015/07/24/18/38/model-858749_960_720.jpg" alt="Sale"/>
-                        </div>
-                        <div class="col-md-3">
-                            <img class="w-100" src="https://cdn.pixabay.com/photo/2015/07/24/18/39/model-858751_960_720.jpg" alt="Sale"/>
-                        </div>
-                        <div class="col-md-3">
-                            <img class="w-100" src="https://cdn.pixabay.com/photo/2015/07/24/18/37/model-858748_960_720.jpg" alt="Sale"/>
-                        </div> */}
                 </div>
               </div>
             </div>

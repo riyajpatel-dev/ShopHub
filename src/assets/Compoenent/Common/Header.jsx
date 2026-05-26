@@ -39,11 +39,11 @@ export default function Header() {
               </a>
 
               {/* Cart se start here */}
-              <div classNameName="position-relative">
+              <div className="position-relative">
                 <Link to="/viewcart">
                   <CiShoppingCart size={25} />
                   <span
-                    classNameName="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                    className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                     style={{ fontSize: "12px" }}
                   >
                     {cartItem.length}

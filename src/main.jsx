@@ -35,11 +35,14 @@ createRoot(document.getElementById("root")).render(
         <Route element={<RootLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/product" element={<Product />} />
-          <Route
+          {/* <Route
             path="product/product-details/:id"
             element={<ProductDetail />}
+          /> */}
+          <Route
+            path="product/product-details/:id"
+            element={<ProductDetails2 />}
           />
-          {/* <Route path="/product/productDetail" element={<ProductDetails2 />} /> */}
           <Route path="/viewcart" element={<ViewCart />} />
         </Route>
       </Routes>

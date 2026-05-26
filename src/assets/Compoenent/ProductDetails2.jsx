@@ -1,6 +1,71 @@
-import React from "react";
+// import React from "react";
+import { cartContext } from "./Context/Context"; // today made
+import { initializeApp } from "firebase/app"; //
+import app from "../../Config/Firebase"; //
+import React, { useContext } from "react";
 import "../Css/ProductDetail.css";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 export default function ProductDetails2() {
+  let [product, setProduct] = useState(""); // for product fetching
+  let discount = (product.price * product.discount_percentage) / 100; // discounted price maths
+  let finalPrice = product.price - discount; // final price of product
+  let [currentImage, setCurentImage] = useState(""); //  Image purpose used
+  let param = useParams(); //
+  var { cartItem, setCartItem } = useContext(cartContext); // Use context used
+
+  let [count, setCount] = useState(1);
+  let showingDetail = (iValue) => {
+    setCurentImage(iValue);
+  };
+
+  useEffect(() => {
+    axios
+      .get(
+        "https://wscubetech.co/ecommerce-api/productdetails.php?id=" + param.id,
+      )
+      .then((result) => {
+        setProduct(result.data.product);
+        setCurentImage(result.data.product.multiple_images[0]);
+      })
+      .catch((error) => {
+        toast.error("Something is wrong");
+      });
+  }, []);
+
+  let addCart = (productInfo) => {
+    {
+      var checkId = cartItem.filter((v) => {
+        if (productInfo.id == v.id) {
+          return v;
+        }
+      });
+      if (checkId.length > 0) {
+        var finalData = cartItem.map((v) => {
+          if (productInfo.id == v.id) {
+            v.quantity++;
+            return v;
+          } else {
+            return v;
+          }
+        });
+      } else {
+        var info = {
+          id: productInfo.id,
+          name: productInfo.name,
+          price: productInfo.price,
+          quantity: productInfo.quantity,
+          image: productInfo.image,
+        };
+        var finalData = [...cartItem, info];
+        setCartItem(finalData);
+        localStorage.setItem("cartItem", JSON.stringify(finalData));
+        const db = getDatabase(app);
+        set(ref(db, "users_cart/" + userId), info);
+      }
+    }
+  };
   return (
     <>
       <div class="card-wrapper">
@@ -10,10 +75,11 @@ export default function ProductDetails2() {
             <div class="img-display">
               <div class="img-showcase">
                 <img
-                  src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_1.jpg"
+                  src={currentImage || null}
                   alt="shoe image"
+                  class="bg-dark"
                 />
-                <img
+                {/* <img
                   src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg"
                   alt="shoe image"
                 />
@@ -24,80 +90,92 @@ export default function ProductDetails2() {
                 <img
                   src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg"
                   alt="shoe image"
-                />
+                /> */}
               </div>
             </div>
-            <div class="img-select">
-              <div class="img-item">
-                <a href="#" data-id="1">
-                  <img
-                    src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_1.jpg"
-                    alt="shoe image"
-                  />
-                </a>
+            {/* here small product details */}
+            {product ? (
+              <div class="img-select">
+                {product.multiple_images.map((v, i) => {
+                  return (
+                    <div
+                      class="img-item"
+                      key={i}
+                      onMouseEnter={() => showingDetail(v)}
+                    >
+                      <img src={v} alt="shoe image" />
+                    </div>
+                  );
+                })}
+
+                {/* <div class="img-item">
+                  <a href="#" data-id="2">
+                    <img
+                      src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg"
+                      alt="shoe image"
+                    />
+                  </a>
+                </div>
+                <div class="img-item">
+                  <a href="#" data-id="3">
+                    <img
+                      src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_3.jpg"
+                      alt="shoe image"
+                    />
+                  </a>
+                </div>
+                <div class="img-item">
+                  <a href="#" data-id="4">
+                    <img
+                      src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg"
+                      alt="shoe image"
+                    />
+                  </a>
+                </div> */}
               </div>
-              <div class="img-item">
-                <a href="#" data-id="2">
-                  <img
-                    src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg"
-                    alt="shoe image"
-                  />
-                </a>
-              </div>
-              <div class="img-item">
-                <a href="#" data-id="3">
-                  <img
-                    src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_3.jpg"
-                    alt="shoe image"
-                  />
-                </a>
-              </div>
-              <div class="img-item">
-                <a href="#" data-id="4">
-                  <img
-                    src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg"
-                    alt="shoe image"
-                  />
-                </a>
-              </div>
-            </div>
+            ) : (
+              "  "
+            )}
+
+            {/* here small product details start */}
+
+            {/* here small product details end */}
           </div>
           {/* <!-- card right --> */}
           <div class="product-content">
-            <h2 class="product-title">nike shoes</h2>
-            <a href="#" class="product-link">
+            <h2 class="product-title">{product.name}</h2>
+            {/* <a href="#" class="product-link">
               visit nike store
-            </a>
+            </a> */}
             <div class="product-rating">
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
               <i class="fas fa-star-half-alt"></i>
-              <span>4.7(21)</span>
+              <span>Rating :{product.rating}</span>
             </div>
 
             <div class="product-price">
               <p class="last-price">
-                Old Price: <span>$257.00</span>
+                {/* Old Price: <span>$257.00</span> */}
+                <span>Older price :{product.price}</span>
               </p>
               <p class="new-price">
-                New Price: <span>$249.00 (5%)</span>
+                {/* New Price: <span>$249.00 (5%)</span> */}
+                <span>Price: {finalPrice}</span>
               </p>
+              <span>Total price {finalPrice * count}</span>
             </div>
 
             <div class="product-detail">
               <h2>about this item: </h2>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
-                eveniet veniam tempora fuga tenetur placeat sapiente architecto
-                illum soluta consequuntur, aspernatur quidem at sequi ipsa!
-              </p>
-              <p>
+              <p>{product.description}</p>
+              {/* <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Consequatur, perferendis eius. Dignissimos, labore suscipit.
                 Unde.
-              </p>
+              </p> */}
               <ul>
                 <li>
                   Color: <span>Black</span>
@@ -106,7 +184,7 @@ export default function ProductDetails2() {
                   Available: <span>in stock</span>
                 </li>
                 <li>
-                  Category: <span>Shoes</span>
+                  Category: <span>{product.category}</span>
                 </li>
                 <li>
                   Shipping Area: <span>All over the world</span>
@@ -118,8 +196,18 @@ export default function ProductDetails2() {
             </div>
 
             <div class="purchase-info">
-              <input type="number" min="0" value="1" />
-              <button type="button" class="btn">
+              <input
+                type="number"
+                min="0"
+                value={count}
+                class="btn"
+                onChange={(e) => setCount(e.target.value)}
+              />
+              <button
+                type="button"
+                class="btn"
+                onClick={() => addCart(product)}
+              >
                 Add to Cart <i class="fas fa-shopping-cart"></i>
               </button>
               <button type="button" class="btn">
@@ -127,7 +215,7 @@ export default function ProductDetails2() {
               </button>
             </div>
 
-            <div class="social-links">
+            {/* <div class="social-links">
               <p>Share At: </p>
               <a href="#">
                 <i class="fab fa-facebook-f"></i>
@@ -144,7 +232,7 @@ export default function ProductDetails2() {
               <a href="#">
                 <i class="fab fa-pinterest"></i>
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
