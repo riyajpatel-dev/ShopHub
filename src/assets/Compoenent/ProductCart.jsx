@@ -51,13 +51,14 @@ export default function ProductCart({ product }) {
   return (
     <>
       {/*  This productCart component export To ProductListing Component Line Number 277 */}
-      <Link
-        className="text-decoration-none text-black"
-        to={`/product/product-details/${product.id}`}
-      >
-        <div className="col mb-3 ">
-          <div className="card bg-dark d-flex h-100 card border-0 shadow-lg p-3 mb-5 bg-body rounded">
-            {/* Height 380px se kam karke 220px kar di gayi hai */}
+
+      <div className="col mb-3 " style={{ height: "350px" }}>
+        <div className="card bg-dark d-flex h-100 card border-0 shadow-lg p-3 mb-5 bg-body rounded">
+          {/* Height 380px se kam karke 220px kar di gayi hai */}
+          <Link
+            className="text-decoration-none text-black"
+            to={`/product/product-details/${product.id}`}
+          >
             <div
               className="position-relative"
               style={{ height: "200px", margin: "15px" }}
@@ -72,49 +73,59 @@ export default function ProductCart({ product }) {
                 Sale
               </span>
             </div>
-
-            {/* Card Body - Padding thodi kam ki hai taki compact lage */}
-            <div className="card-body p-3 d-flex flex-column">
-              {/* Title aur Category */}
+            <div>
               <h6 className="card-title text-dark fst-italic text-truncate mb-1">
                 {product.name}
               </h6>
               <p className="card-text text-dark text-opacity-75 fst-italic small mb-2">
                 {product.category_name}
               </p>
-
-              {/* Stars - mt-auto se hamesha bottom ki taraf push rahenge */}
-              <div className="d-flex align-items-center mb-2 mt-auto">
-                <div
-                  className="text-warning me-1"
-                  style={{ fontSize: "0.85rem" }}
+              <span
+                className="fw-bold text-dark"
+                style={{ fontSize: "1.05rem" }}
+              >
+                Rs.{discount_price}
+              </span>
+              <span
+                className="text-decoration-line-through text-muted small"
+                style={{
+                  fontSize: "0.8rem",
+                  marginTop: "-3px",
+                  marginLeft: "5px",
+                }}
+              >
+                Rs.{product.price}
+              </span>
+              <div
+                className=""
+                style={{ marginLeft: "65px", marginBottom: "20px" }}
+              >
+                <button
+                  className="magical-btn d-flex align-items-center gap-2"
+                  onClick={(e) => {
+                    e.preventDefault(); // Prevents Link navigation
+                    e.stopPropagation(); // Prevents event bubbling
+                    addCart(product);
+                  }}
                 >
-                  <i className="fa fa-star"></i>
-                  <i className="fa fa-star"></i>
-                  <i className="fa fa-star"></i>
-                  <i className="fa fa-star"></i>
-                  <i className="fa fa-star-half-alt"></i>
-                </div>
+                  <span>Buy Now</span>
+                  <i className="fa fa-arrow-right"></i>
+                </button>
               </div>
+            </div>
+          </Link>
 
-              {/* Price & Button */}
-              <div className="d-flex justify-content-between align-items-center mt-1">
-                <div className="d-flex flex-column">
-                  <span
-                    className="fw-bold text-dark"
-                    style={{ fontSize: "1.05rem" }}
-                  >
-                    Rs.{discount_price}
-                  </span>
-                  <span
-                    className="text-decoration-line-through text-muted small"
-                    style={{ fontSize: "0.8rem", marginTop: "-3px" }}
-                  >
-                    Rs.{product.price}
-                  </span>
-                </div>
+          {/* Card Body - Padding thodi kam ki hai taki compact lage */}
+          <div className="card-body p-3 d-flex flex-column">
+            {/* Title aur Category */}
 
-                {/* <button
+            {/* Stars - mt-auto se hamesha bottom ki taraf push rahenge */}
+
+            {/* Price & Button */}
+            <div className="d-flex justify-content-between align-items-center mt-1">
+              <div className="d-flex flex-column"></div>
+
+              {/* <button
                   type="button"
                   className="btn btn-primary btn-sm d-flex align-items-center gap-2"
                   onClick={(e) => {
@@ -125,26 +136,13 @@ export default function ProductCart({ product }) {
                 >
                   Add <i className="fa fa-shopping-cart"></i>
                 </button> */}
-                {/*  */}
-                <div className="d-flex justify-content-center mt-5">
-                  <button
-                    className="magical-btn d-flex align-items-center gap-2"
-                    onClick={(e) => {
-                      e.preventDefault(); // Prevents Link navigation
-                      e.stopPropagation(); // Prevents event bubbling
-                      addCart(product);
-                    }}
-                  >
-                    <span>Buy Now</span>
-                    <i className="fa fa-arrow-right"></i>
-                  </button>
-                </div>
-                {/*  */}
-              </div>
+              {/*  */}
+              <div className="d-flex justify-content-center mt-5"></div>
+              {/*  */}
             </div>
           </div>
         </div>
-      </Link>
+      </div>
     </>
   );
 }

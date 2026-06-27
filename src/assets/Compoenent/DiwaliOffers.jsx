@@ -16,7 +16,7 @@ export default function DiwaliOffers() {
           >
             <img
               src={image1}
-              class="img-fluid rounded-top  w-100 h-100"
+              className="img-fluid rounded-top  w-100 h-100"
               alt=""
               style={{
                 objectFit: "cover",
@@ -30,7 +30,7 @@ export default function DiwaliOffers() {
           >
             <img
               src={image2}
-              class="img-fluid rounded-top  w-100 h-100"
+              className="img-fluid rounded-top  w-100 h-100"
               alt=""
               style={{
                 objectFit: "cover",
@@ -44,7 +44,7 @@ export default function DiwaliOffers() {
           >
             <img
               src={image3}
-              class="img-fluid rounded-top  w-100 h-100"
+              className="img-fluid rounded-top  w-100 h-100"
               alt=""
               style={{
                 objectFit: "cover",
@@ -58,7 +58,7 @@ export default function DiwaliOffers() {
           >
             <img
               src={image4}
-              class="img-fluid rounded-top  w-100 h-100"
+              className="img-fluid rounded-top  w-100 h-100"
               alt=""
               style={{
                 objectFit: "cover",

@@ -50,20 +50,21 @@ export default function Header() {
                 </li>
 
                 <li className="nav-item d-flex gap-4">
-                  <li>
-                    <a className="nav-link text-dark" href="#">
-                      Categories
-                    </a>
-                  </li>
+                  <ul className="d-flex list-unstyled">
+                    <li>
+                      <a className="nav-link text-dark" href="#">
+                        Categories
+                      </a>
+                    </li>
 
-                  <li className="nav-item">
-                    <a className="nav-link text-dark" href="#">
-                      Deal
-                    </a>
-                  </li>
+                    <li className="nav-item">
+                      <a className="nav-link text-dark" href="#">
+                        Deal
+                      </a>
+                    </li>
 
-                  <li className="nav-item">
-                    {/* <a className="nav-link text-white" href="#">
+                    <li className="nav-item">
+                      {/* <a className="nav-link text-white" href="#">
                       <div className="position-relative">
                         <Link to="/viewcart">
                           <CiShoppingCart size={25} />
@@ -76,10 +77,11 @@ export default function Header() {
                         </Link>
                       </div>
                     </a> */}
-                    <a className="nav-link text-dark" href="#">
-                      User
-                    </a>
-                  </li>
+                      <a className="nav-link text-dark" href="#">
+                        User
+                      </a>
+                    </li>
+                  </ul>
                 </li>
 
                 {/* <li className="nav-item">
@@ -99,19 +101,17 @@ export default function Header() {
                 </li> */}
 
                 <li className="nav-item">
-                  <a className="nav-link text-white" href="#">
-                    <div className="position-relative">
-                      <Link to="/viewcart">
-                        <CiShoppingCart size={25} />
-                        <span
-                          className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                          style={{ fontSize: "12px" }}
-                        >
-                          {cartItem.length}
-                        </span>
-                      </Link>
-                    </div>
-                  </a>
+                  <div className="position-relative">
+                    <a to="/viewcart">
+                      <CiShoppingCart size={25} />
+                      <span
+                        className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                        style={{ fontSize: "12px" }}
+                      >
+                        {cartItem.length}
+                      </span>
+                    </a>
+                  </div>
                 </li>
 
                 <li className="nav-item">
