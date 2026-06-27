@@ -1,6 +1,6 @@
 import React from "react";
 import image1 from "../Image/Offer1.jpg";
-import image2 from "../Image/Offer2.jpg";
+// import image2 from "../Image/Offer2.jpg";
 import image3 from "../Image/Offer3.jpg";
 import image4 from "../Image/Offer4.jpg";
 
@@ -23,20 +23,7 @@ export default function DiwaliOffers() {
               }}
             />
           </li>
-
-          <li
-            className="d-flex border shadow-sm p-3 rounded bg-white w-25  "
-            style={{ height: "180px" }}
-          >
-            <img
-              src={image2}
-              className="img-fluid rounded-top  w-100 h-100"
-              alt=""
-              style={{
-                objectFit: "cover",
-              }}
-            />
-          </li>
+          {/* s */}
 
           <li
             className="d-flex border shadow-sm p-3 rounded bg-white w-25  "
