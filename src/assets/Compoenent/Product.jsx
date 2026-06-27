@@ -12,6 +12,7 @@ export default function Product() {
       {/* <ToastContainer /> */}
 
       <Discover />
+
       <ProductListing />
       <ProductDetail />
     </>

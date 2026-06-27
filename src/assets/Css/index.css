@@ -1,6 +1,65 @@
+.category_scroll {
+  max-height: 400px;
+  overflow-y: scroll;
+}
 
+.magical-btn {
+  position: relative;
+  overflow: hidden;
+  padding: 10px 28px;
+  border-radius: 50px;
+  border: none;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  background: linear-gradient(
+    135deg,
+    #6e8efb,
+    #a777e3
+  ); /* Premium Purple/Blue Gradient */
+  box-shadow: 0 4px 15px rgba(167, 119, 227, 0.4);
+  transition: all 0.3s ease;
+}
 
-.category_scroll{
-    max-height: 400px;
-    overflow-y: scroll;
+/* Hover Effect: Mouse aane par thoda bada aur upar uthega */
+.magical-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(167, 119, 227, 0.6);
+}
+
+/* Active Effect: Click karne par dabega */
+.magical-btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* 🌟 SHINE ANIMATION MAGIC 🌟 */
+.magical-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg); /* Tedi chamak (angled shine) */
+  animation: shine-effect 3s infinite; /* 3 second me loop hogi */
+}
+
+/* Animation Keyframes */
+@keyframes shine-effect {
+  0% {
+    left: -100%;
+  }
+  20% {
+    left: 200%;
+  } /* Tezi se cross karegi */
+  100% {
+    left: 200%;
+  } /* Kuch der rukegi taaki annoying na lage */
 }

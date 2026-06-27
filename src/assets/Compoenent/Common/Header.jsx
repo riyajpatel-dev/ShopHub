@@ -2,7 +2,8 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
-import "../../Css/style.css";
+// import "../../Css/style.css";
+import "../../Css/navbar.css";
 import { cartContext } from "../Context/Context";
 
 export default function Header() {
@@ -11,49 +12,124 @@ export default function Header() {
   return (
     <>
       {/* <!-- Header --> */}
-      <nav class="navbar navbar-expand-lg bg-white shadow-sm px-4 py-3 border border-warning border-end-0 border border-start-0 ">
-        <div class="container-fluid d-flex align-items-center justify-content-between">
-          <Link class="navbar-brand fw-bold text-primary" to="/">
-            ShopHub
-          </Link>
-
-          <div class="w-25 h-50  border border-transparent mx-auto  ">
-            <form class="d-flex flex-grow-1 " role="search">
-              <CiSearch class="mx-0 mt-1" style={{ fontSize: "30px" }} />
-              <input
-                class="form-control  w-30 mx-auto "
-                type="search"
-                placeholder="Search products..."
-                aria-label="Search"
-              />
-            </form>
-          </div>
-
-          <div class="d-flex align-items-center gap-3">
-            <Link to="/product" class="text-dark text-decoration-none rc">
-              Categories
-            </Link>
-            <div class="d-flex align-items-center gap-3 align-items-center">
-              <a href="#" class="text-dark text-decoration-none">
-                Deal
+      <div className="container py-4  sticky-top">
+        <nav className="navbar navbar-expand-lg glass-navbar px-4">
+          <div className="container-fluid">
+            {/* Logo */}
+            <div>
+              <a className="navbar-brand text-dark fw-bold fs-2" href="#">
+                shopiee
               </a>
+            </div>
+            <div>
+              <input
+                type="text"
+                className="form-control rounded-pill px-4 py-2 shadow-sm border-light"
+                placeholder="Search..."
+                style={{
+                  outline: "none",
+                  boxShadow: "none",
+                  marginLeft: "30px",
+                }}
+              />
+            </div>
 
-              {/* Cart se start here */}
-              <div className="position-relative">
-                <Link to="/viewcart">
-                  <CiShoppingCart size={25} />
-                  <span
-                    className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                    style={{ fontSize: "12px" }}
-                  >
-                    {cartItem.length}
-                  </span>
-                </Link>
-              </div>
+            <div
+              className="collapse navbar-collapse justify-content-center"
+              id="navbarNav"
+            >
+              <ul className="navbar-nav gap-lg-3  ">
+                <li className="nav-item">
+                  {/* <a className="nav-link text-dark" href="#"></a> */}
+                  {/* <input
+                    type="text"
+                    className="form-control rounded-pill px-4 py-2 shadow-sm border-light"
+                    placeholder="Search..."
+                    style={{ outline: "none", boxShadow: "none" }}
+                  /> */}
+                </li>
+
+                <li className="nav-item d-flex gap-4">
+                  <li>
+                    <a className="nav-link text-dark" href="#">
+                      Categories
+                    </a>
+                  </li>
+
+                  <li className="nav-item">
+                    <a className="nav-link text-dark" href="#">
+                      Deal
+                    </a>
+                  </li>
+
+                  <li className="nav-item">
+                    {/* <a className="nav-link text-white" href="#">
+                      <div className="position-relative">
+                        <Link to="/viewcart">
+                          <CiShoppingCart size={25} />
+                          <span
+                            className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                            style={{ fontSize: "12px" }}
+                          >
+                            {cartItem.length}
+                          </span>
+                        </Link>
+                      </div>
+                    </a> */}
+                    <a className="nav-link text-dark" href="#">
+                      User
+                    </a>
+                  </li>
+                </li>
+
+                {/* <li className="nav-item">
+                  <a className="nav-link text-white" href="#">
+                    <div className="position-relative">
+                      <Link to="/viewcart">
+                        <CiShoppingCart size={25} />
+                        <span
+                          className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                          style={{ fontSize: "12px" }}
+                        >
+                          {cartItem.length}
+                        </span>
+                      </Link>
+                    </div>
+                  </a>
+                </li> */}
+
+                <li className="nav-item">
+                  <a className="nav-link text-white" href="#">
+                    <div className="position-relative">
+                      <Link to="/viewcart">
+                        <CiShoppingCart size={25} />
+                        <span
+                          className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                          style={{ fontSize: "12px" }}
+                        >
+                          {cartItem.length}
+                        </span>
+                      </Link>
+                    </div>
+                  </a>
+                </li>
+
+                <li className="nav-item">
+                  <a className="nav-link text-dark" href="#">
+                    Contact Us
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Icons */}
+            <div className="d-flex gap-3">
+              <i className="bi bi-github text-white fs-4"></i>
+              <i className="bi bi-sun-fill text-warning fs-4"></i>
             </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </div>
     </>
   );
 }

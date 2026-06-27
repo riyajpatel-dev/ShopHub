@@ -7,6 +7,7 @@ import { Toast } from "react-bootstrap";
 import { initializeApp } from "firebase/app";
 import app from "../../Config/Firebase";
 import { getDatabase, ref, set } from "firebase/database";
+import "../Css/index.css";
 
 export default function ProductCart({ product }) {
   var { cartItem, setCartItem } = useContext(cartContext);
@@ -52,62 +53,95 @@ export default function ProductCart({ product }) {
       {/*  This productCart component export To ProductListing Component Line Number 277 */}
       <Link
         className="text-decoration-none text-black"
-        to={`${"/product/product-details/" + product.id}`}
+        to={`/product/product-details/${product.id}`}
       >
-        <div class="col h-10">
-          <div class="card  bg-dark d-flex">
-            <div class="position-relative" style={{ height: "380px" }}>
+        <div className="col mb-3 ">
+          <div className="card bg-dark d-flex h-100 card border-0 shadow-lg p-3 mb-5 bg-body rounded">
+            {/* Height 380px se kam karke 220px kar di gayi hai */}
+            <div
+              className="position-relative"
+              style={{ height: "200px", margin: "15px" }}
+            >
               <img
                 src={product.image}
-                class="card-img-top h-100"
+                className="card-img-top w-100 h-100"
                 style={{ objectFit: "cover" }}
-                alt="TV"
+                alt={product.name || "Product"}
               />
-              <span class="position-absolute top-0 start-0 badge bg-danger m-2">
+              <span className="position-absolute top-0 start-0 badge bg-danger m-2">
                 Sale
               </span>
             </div>
 
-            <div class="card-body">
-              <h6 class="card-title custom-text text-light fst-italic">
+            {/* Card Body - Padding thodi kam ki hai taki compact lage */}
+            <div className="card-body p-3 d-flex flex-column">
+              {/* Title aur Category */}
+              <h6 className="card-title text-dark fst-italic text-truncate mb-1">
                 {product.name}
               </h6>
-              {/* </Link> */}
-              <p class="card-text text-light fst-italic small mb-0 ">
+              <p className="card-text text-dark text-opacity-75 fst-italic small mb-2">
                 {product.category_name}
               </p>
-              <div class="d-flex align-items-center mb-2">
-                <div class="text-warning me-1">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star-half-alt"></i>
+
+              {/* Stars - mt-auto se hamesha bottom ki taraf push rahenge */}
+              <div className="d-flex align-items-center mb-2 mt-auto">
+                <div
+                  className="text-warning me-1"
+                  style={{ fontSize: "0.85rem" }}
+                >
+                  <i className="fa fa-star"></i>
+                  <i className="fa fa-star"></i>
+                  <i className="fa fa-star"></i>
+                  <i className="fa fa-star"></i>
+                  <i className="fa fa-star-half-alt"></i>
                 </div>
-                {/* <span class=" small text-light">4.5</span> */}
               </div>
-              <div class="d-flex justify-content-between align-items-center">
-                <div>
-                  <span class="fs-5 fw-bold fs-7 text-light">
+
+              {/* Price & Button */}
+              <div className="d-flex justify-content-between align-items-center mt-1">
+                <div className="d-flex flex-column">
+                  <span
+                    className="fw-bold text-dark"
+                    style={{ fontSize: "1.05rem" }}
+                  >
                     Rs.{discount_price}
                   </span>
-                  <span class="text-decoration-line-through text-muted ms-2 fs-7">
+                  <span
+                    className="text-decoration-line-through text-muted small"
+                    style={{ fontSize: "0.8rem", marginTop: "-3px" }}
+                  >
                     Rs.{product.price}
                   </span>
                 </div>
 
-                <button
+                {/* <button
                   type="button"
-                  class="btn btn-primary btn-sm"
-                  onClick={() => addCart(product)}
+                  className="btn btn-primary btn-sm d-flex align-items-center gap-2"
+                  onClick={(e) => {
+                    e.preventDefault(); // Prevents Link navigation
+                    e.stopPropagation(); // Prevents event bubbling
+                    addCart(product);
+                  }}
                 >
-                  Add To Cart
-                  <i class="fa fa-shopping-cart"></i>
-                  {/* <CiShoppingCart /> */}
-                </button>
+                  Add <i className="fa fa-shopping-cart"></i>
+                </button> */}
+                {/*  */}
+                <div className="d-flex justify-content-center mt-5">
+                  <button
+                    className="magical-btn d-flex align-items-center gap-2"
+                    onClick={(e) => {
+                      e.preventDefault(); // Prevents Link navigation
+                      e.stopPropagation(); // Prevents event bubbling
+                      addCart(product);
+                    }}
+                  >
+                    <span>Buy Now</span>
+                    <i className="fa fa-arrow-right"></i>
+                  </button>
+                </div>
+                {/*  */}
               </div>
             </div>
-            {/* </Link> */}
           </div>
         </div>
       </Link>
