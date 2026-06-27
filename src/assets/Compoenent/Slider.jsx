@@ -4,7 +4,7 @@ import logo2 from "../Image/bannerI2.png";
 
 import logo3 from "../Image/bannerI3.png";
 import "../Css/style.css";
-import DiwaliOffers from "./DiwaliOffers";
+// import DiwaliOffers from "./DiwaliOffers";
 
 export default function Slider() {
   return (
@@ -68,7 +68,7 @@ export default function Slider() {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
-      <DiwaliOffers />
+      {/* <DiwaliOffers /> */}
     </>
   );
 }
